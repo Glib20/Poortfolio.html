@@ -20,8 +20,53 @@ body {
   margin: 0 auto;
   padding: 0 15px;
 }
+/* Навігаційне меню */
+nav ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
 
-/* Логотип */
+nav a {
+  position: relative;
+  text-decoration: none;
+  color: #212121;
+  font-weight: 500;
+  padding: 10px 0;
+  transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav a:focus {
+  color: #2196f3;
+}
+
+/* Активне посилання (поточна сторінка) */
+nav a.active {
+  color: #2196f3;
+}
+
+nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 4px;
+  background-color: #2196f3;
+  border-radius: 2px;
+}
+
+
+/* ----------------- Header ----------------- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
 .header-logo,
 .footer-logo {
   font-family: 'Raleway', sans-serif;
@@ -34,34 +79,56 @@ body {
 .footer-logo-span {
   color: var(--color-blue);
 }
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  flex-wrap: wrap;
-}
 
 .header nav ul {
   display: flex;
   gap: 30px;
+  list-style: none;
 }
 
+.header-nav-link {
+  position: relative;
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--color-dgray);
+  padding-bottom: 4px;
+  transition: color 0.3s;
+}
+
+.header-nav-link:hover {
+  color: var(--color-blue);
+}
+
+/* 🟦 №1 — активне підкреслення поточної сторінки */
+.header-nav-link.current {
+  color: var(--color-blue);
+}
+
+.header-nav-link.current::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--color-blue);
+  border-radius: 2px;
+}
+
+/* Контакти */
 .header-contacts {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  text-align: c;
 }
 
-/* Заголовок */
+/* ----------------- Portfolio ----------------- */
 .portfolio-title {
   font-size: 28px;
   margin-bottom: 20px;
   text-align: center;
 }
 
-/* Кнопки фільтрів */
 .portfolio-filters {
   display: flex;
   flex-wrap: wrap;
@@ -79,7 +146,7 @@ body {
   cursor: pointer;
 }
 
-/* Галерея */
+/* ----------------- Галерея ----------------- */
 .portfolio-gallery-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -95,12 +162,45 @@ body {
   border-radius: 8px;
   overflow: hidden;
   box-sizing: border-box;
+  position: relative;
+}
+
+.portfolio-thumb {
+  position: relative;
+  overflow: hidden;
 }
 
 .portfolio-gallery-img {
   width: 100%;
   height: auto;
   display: block;
+  transition: transform 0.4s ease;
+}
+
+.portfolio-thumb:hover .portfolio-gallery-img {
+  transform: scale(1.05);
+}
+
+/* 🟦 №2 — оверлей з текстом лише для першої картки */
+.portfolio-gallery-item:first-child .overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(33,150,243,0.9);
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.portfolio-gallery-item:first-child .portfolio-thumb:hover .overlay {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .portfolio-gallery-title {
@@ -114,7 +214,7 @@ body {
   padding: 0 16px 10px;
 }
 
-/* Footer */ 
+/* ----------------- Footer ----------------- */
 footer {
   background-color: var(--color-fon);
   color: var(--color-white);

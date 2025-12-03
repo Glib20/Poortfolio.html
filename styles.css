@@ -214,3 +214,35 @@ footer {
   margin-bottom: 8px;
 }
 
+/* ----------------- Фільтри ----------------- */
+.portfolio-filters {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.portfolio-filters-button {
+  padding: 10px 24px;
+  background-color: #f5f4fa;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--color-dgray);
+  transition: background-color 250ms, color 250ms, box-shadow 250ms;
+}
+
+.portfolio-filters-button:hover {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio-filters-button.active {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+}
+

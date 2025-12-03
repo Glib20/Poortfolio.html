@@ -122,30 +122,6 @@ nav a.active::after {
   gap: 5px;
 }
 
-/* ----------------- Portfolio ----------------- */
-.portfolio-title {
-  font-size: 28px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.portfolio-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 40px;
-}
-
-.portfolio-filters-button {
-  background-color: var(--color-gray);
-  color: var(--color-white);
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 /* ----------------- Галерея ----------------- */
 .portfolio-gallery-list {
   display: grid;
@@ -163,6 +139,7 @@ nav a.active::after {
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
+  cursor: pointer;
 }
 
 .portfolio-thumb {
@@ -170,6 +147,7 @@ nav a.active::after {
   overflow: hidden;
 }
 
+/* Картинка з масштабуванням */
 .portfolio-gallery-img {
   width: 100%;
   height: auto;
@@ -177,29 +155,33 @@ nav a.active::after {
   transition: transform 0.4s ease;
 }
 
-.portfolio-thumb:hover .portfolio-gallery-img {
+.portfolio-gallery-item:hover .portfolio-gallery-img,
+.portfolio-gallery-item:focus-within .portfolio-gallery-img {
   transform: scale(1.05);
 }
 
-/* 🟦 №2 — оверлей з текстом лише для першої картки */
-.portfolio-gallery-item:first-child .overlay {
+/* 🔵 ОВЕРЛЕЙ ДЛЯ ВСІХ КАРТОК */
+.overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(33,150,243,0.9);
+  background-color: rgba(33, 150, 243, 0.9);
   color: var(--color-white);
+  padding: 20px;
+  font-size: 16px;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  padding: 20px;
-  font-size: 16px;
-  opacity: 0;
+  text-align: left;
+
+  /* старт під карткою */
   transform: translateY(100%);
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  transition: transform 250ms ease-in-out;
 }
 
-.portfolio-gallery-item:first-child .portfolio-thumb:hover .overlay {
-  opacity: 1;
+/* Показ при ховері і фокусі */
+.portfolio-gallery-item:hover .overlay,
+.portfolio-gallery-item:focus-within .overlay {
   transform: translateY(0);
 }
 
@@ -213,6 +195,7 @@ nav a.active::after {
   color: var(--color-gray);
   padding: 0 16px 10px;
 }
+
 
 /* ----------------- Footer ----------------- */
 footer {
@@ -230,3 +213,4 @@ footer {
   font-style: normal;
   margin-bottom: 8px;
 }
+

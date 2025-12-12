@@ -1,3 +1,4 @@
+/* ------------------------ Root ------------------------ */
 :root {
   --color-gray: #757575;
   --color-dgray: #212121;
@@ -6,8 +7,12 @@
   --color-blue: #2196f3;
   --color-white: #fff;
   --color-fon: #2f302f;
+
+  --timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration: 250ms;
 }
 
+/* ------------------------ Base ------------------------ */
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
@@ -15,50 +20,14 @@ body {
   margin: 0;
   padding: 0;
 }
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
 }
-/* Навігаційне меню */
-nav ul {
-  display: flex;
-  gap: 30px;
-  list-style: none;
-}
 
-nav a {
-  position: relative;
-  text-decoration: none;
-  color: #212121;
-  font-weight: 500;
-  padding: 10px 0;
-  transition: color 0.3s ease;
-}
-
-nav a:hover,
-nav a:focus {
-  color: #2196f3;
-}
-
-/* Активне посилання (поточна сторінка) */
-nav a.active {
-  color: #2196f3;
-}
-
-nav a.active::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 4px;
-  background-color: #2196f3;
-  border-radius: 2px;
-}
-
-
-/* ----------------- Header ----------------- */
+/* ------------------------ Header ------------------------ */
 .header {
   display: flex;
   justify-content: space-between;
@@ -80,10 +49,13 @@ nav a.active::after {
   color: var(--color-blue);
 }
 
-.header nav ul {
+/* ----- Navigation ----- */
+.header-nav {
   display: flex;
   gap: 30px;
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .header-nav-link {
@@ -92,14 +64,16 @@ nav a.active::after {
   font-weight: 500;
   color: var(--color-dgray);
   padding-bottom: 4px;
-  transition: color 0.3s;
+
+  transition: color var(--duration) var(--timing);
 }
 
-.header-nav-link:hover {
+.header-nav-link:hover,
+.header-nav-link:focus {
   color: var(--color-blue);
 }
 
-/* 🟦 №1 — активне підкреслення поточної сторінки */
+/* active page */
 .header-nav-link.current {
   color: var(--color-blue);
 }
@@ -113,108 +87,37 @@ nav a.active::after {
   height: 4px;
   background-color: var(--color-blue);
   border-radius: 2px;
+
+  transition: background-color var(--duration) var(--timing);
 }
 
-/* Контакти */
+/* ----- Contacts ----- */
 .header-contacts {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-/* ----------------- Галерея ----------------- */
-.portfolio-gallery-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.portfolio-gallery-item {
-  background-color: #f9f9f9;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  overflow: hidden;
-  box-sizing: border-box;
-  position: relative;
-  cursor: pointer;
-}
-
-.portfolio-thumb {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Картинка з масштабуванням */
-.portfolio-gallery-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.4s ease;
-}
-
-.portfolio-gallery-item:hover .portfolio-gallery-img,
-.portfolio-gallery-item:focus-within .portfolio-gallery-img {
-  transform: scale(1.05);
-}
-
-/* 🔵 ОВЕРЛЕЙ ДЛЯ ВСІХ КАРТОК */
-.overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(33, 150, 243, 0.9);
-  color: var(--color-white);
-  padding: 20px;
-  font-size: 16px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: left;
-
-  /* старт під карткою */
-  transform: translateY(100%);
-  transition: transform 250ms ease-in-out;
-}
-
-/* Показ при ховері і фокусі */
-.portfolio-gallery-item:hover .overlay,
-.portfolio-gallery-item:focus-within .overlay {
-  transform: translateY(0);
-}
-
-.portfolio-gallery-title {
-  font-size: 18px;
-  padding: 10px 16px 0;
-}
-
-.portfolio-gallery-text {
-  font-size: 14px;
+.header-contacts a {
+  text-decoration: none;
   color: var(--color-gray);
-  padding: 0 16px 10px;
+
+  transition: color var(--duration) var(--timing);
 }
 
-
-/* ----------------- Footer ----------------- */
-footer {
-  background-color: var(--color-fon);
-  color: var(--color-white);
-  padding: 40px 20px;
+.header-contacts a:hover,
+.header-contacts a:focus {
+  color: var(--color-blue);
 }
 
-.footer-logo {
-  color: var(--color-white);
+/* ------------------------ Portfolio Filters ------------------------ */
+.portfolio-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 700;
 }
 
-.footer-address-text {
-  color: var(--color-white);
-  font-style: normal;
-  margin-bottom: 8px;
-}
-
-/* ----------------- Фільтри ----------------- */
 .portfolio-filters {
   display: flex;
   justify-content: center;
@@ -231,10 +134,15 @@ footer {
   font-weight: 500;
   cursor: pointer;
   color: var(--color-dgray);
-  transition: background-color 250ms, color 250ms, box-shadow 250ms;
+
+  transition:
+    background-color var(--duration) var(--timing),
+    color var(--duration) var(--timing),
+    box-shadow var(--duration) var(--timing);
 }
 
-.portfolio-filters-button:hover {
+.portfolio-filters-button:hover,
+.portfolio-filters-button:focus {
   background-color: var(--color-blue);
   color: var(--color-white);
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
@@ -246,3 +154,99 @@ footer {
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
 }
 
+/* ------------------------ Gallery ------------------------ */
+.portfolio-gallery-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.portfolio-gallery-item {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  transition:
+    box-shadow var(--duration) var(--timing),
+    border-color var(--duration) var(--timing);
+}
+
+.portfolio-gallery-item:hover,
+.portfolio-gallery-item:focus-within {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  border-color: #ddd;
+}
+
+/* image */
+.portfolio-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-gallery-img {
+  width: 100%;
+  height: auto;
+  display: block;
+
+  transition: transform var(--duration) var(--timing);
+}
+
+.portfolio-gallery-item:hover .portfolio-gallery-img,
+.portfolio-gallery-item:focus-within .portfolio-gallery-img {
+  transform: scale(1.05);
+}
+
+/* overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(33, 150, 243, 0.9);
+  color: var(--color-white);
+  padding: 20px;
+  font-size: 16px;
+
+  display: flex;
+  align-items: center;
+
+  transform: translateY(100%);
+  transition: transform var(--duration) var(--timing);
+}
+
+.portfolio-gallery-item:hover .overlay,
+.portfolio-gallery-item:focus-within .overlay {
+  transform: translateY(0);
+}
+
+.portfolio-gallery-title {
+  font-size: 18px;
+  padding: 10px 16px 0;
+}
+
+.portfolio-gallery-text {
+  font-size: 14px;
+  color: var(--color-gray);
+  padding: 0 16px 10px;
+}
+
+/* ------------------------ Footer ------------------------ */
+footer {
+  background-color: var(--color-fon);
+  color: var(--color-white);
+  padding: 40px 20px;
+}
+
+.footer-logo {
+  color: var(--color-white);
+}
+
+.footer-address-text {
+  color: var(--color-white);
+  font-style: normal;
+  margin-bottom: 8px;
+}
